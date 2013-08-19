@@ -5,11 +5,31 @@ class Location(models.Model):
 	"""
 	This class represents a location
 	"""
-	
+
+	name = models.CharField(max_length=64)
 	lat = models.DecimalField(max_digits=10, decimal_places=6)
 	lon = models.DecimalField(max_digits=10, decimal_places=6)
-	name = models.CharField(max_length=64)
-	
+
 	def __unicode__(self):
 		return self.name
-	
+
+
+class RecordValueList(models.Model):
+	"""
+	List RecordValues for a specific location.
+	This is referred to by RecordValue
+	"""
+
+	location = models.ForeignKey(Location)
+
+
+class RecordValue(models.Model):
+	"""
+	This class represents a time labelled single record
+	"""
+
+	list = models.ForeignKey(RecordValueList)
+	datetime = models.DateTimeField()
+	value = models.FloatField()
+
+
