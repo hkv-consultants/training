@@ -9,12 +9,13 @@ admin.site.register(Location, LocationAdmin)
 
 
 class RecordValueAdmin(admin.ModelAdmin):
-    pass
+    list_filter = ('value_list', 'value_list__location')
 
 admin.site.register(RecordValue, RecordValueAdmin)
 
 
 class RecordValueListAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
+    list_filter = ('location',)
 
 admin.site.register(RecordValueList, RecordValueListAdmin)
