@@ -7,6 +7,7 @@ class Location(models.Model):
 	"""
 
 	name = models.CharField(max_length=64)
+	slug = models.SlugField(max_length=64, unique=True)
 	lat = models.DecimalField(max_digits=10, decimal_places=6)
 	lon = models.DecimalField(max_digits=10, decimal_places=6)
 
@@ -20,10 +21,12 @@ class RecordValueList(models.Model):
 	This is referred to by RecordValue
 	"""
 
+	name = models.CharField(max_length=64)
+	slug = models.SlugField(max_length=64, unique=True)
 	location = models.ForeignKey(Location)
 
 	def __unicode__(self):
-		return unicode(self.location)
+		return self.name
 
 
 class RecordValue(models.Model):
@@ -31,10 +34,10 @@ class RecordValue(models.Model):
 	This class represents a time labelled single record
 	"""
 
-	list = models.ForeignKey(RecordValueList)
+	value_list = models.ForeignKey(RecordValueList)
 	datetime = models.DateTimeField()
 	value = models.FloatField()
 
 	def __unicode__(self):
-		return "%s, %s: %f" % (self.list, self.datetime, self.value)
+		return "%s, %s: %f" % (self.value_list, self.datetime, self.value)
 

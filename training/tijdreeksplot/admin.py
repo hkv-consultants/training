@@ -3,15 +3,18 @@ from .models import Location, RecordValue, RecordValueList
 
 
 class LocationAdmin(admin.ModelAdmin):
-    pass
+    prepopulated_fields = {"slug": ("name",)}
+
 admin.site.register(Location, LocationAdmin)
 
 
 class RecordValueAdmin(admin.ModelAdmin):
     pass
+
 admin.site.register(RecordValue, RecordValueAdmin)
 
 
 class RecordValueListAdmin(admin.ModelAdmin):
-    pass
+    prepopulated_fields = {"slug": ("name",)}
+
 admin.site.register(RecordValueList, RecordValueListAdmin)
