@@ -22,6 +22,9 @@ class RecordValueList(models.Model):
 
 	location = models.ForeignKey(Location)
 
+	def __unicode__(self):
+		return unicode(self.location)
+
 
 class RecordValue(models.Model):
 	"""
@@ -32,4 +35,6 @@ class RecordValue(models.Model):
 	datetime = models.DateTimeField()
 	value = models.FloatField()
 
+	def __unicode__(self):
+		return "%s, %s: %f" % (self.list, self.datetime, self.value)
 
