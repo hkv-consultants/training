@@ -34,11 +34,13 @@ Summary day 2
 
 #. Exploration of `staticfiles <https://docs.djangoproject.com/en/dev/howto/static-files/>`_ asset management for Django.
 
-#. Experimented with `D3.js <d3js.org>`_ data visualization library.
+#. Basic data visualization with `D3.js <d3js.org>`_ data visualization library.
 
 #. Introduction to `VirtualEnv <http://docs.python-guide.org/en/latest/starting/install/win/#virtualenv>`_ and `requirements.txt <http://www.pip-installer.org/en/latest/requirements.html>`_.
 
 #. Basic integration of `Twitter Boootstrap <http://getbootstrap.com/getting-started/>`_.
+
+#. `Default model ordering <https://docs.djangoproject.com/en/dev/ref/models/options/#ordering>`_  using `Meta` class.
 
 Later
 -----
