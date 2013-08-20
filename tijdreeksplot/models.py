@@ -54,3 +54,5 @@ class RecordValue(models.Model):
     def __unicode__(self):
         return "%s, %s: %f" % (self.value_list, self.datetime, self.value)
 
+    class Meta:
+        ordering = ['datetime']
