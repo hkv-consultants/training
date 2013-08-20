@@ -1,18 +1,72 @@
 {% extends "base.html" %}
 
 {% block htmlheader %}
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<style>
+	/* tell the SVG path to be a thin blue line without any area fill */
+	path {
+		stroke: steelblue;
+		stroke-width: 1;
+		fill: none;
+	}
+
+	.axis {
+	  shape-rendering: crispEdges;
+	}
+
+	.x.axis line {
+	  stroke: lightgrey;
+	}
+
+	.x.axis .minor {
+	  stroke-opacity: .5;
+	}
+
+	.x.axis path {
+	  display: none;
+	}
+
+	.y.axis line, .y.axis path {
+	  fill: none;
+	  stroke: #000;
+	}
+</style>
+
+<script src="http://d3js.org/d3.v3.js" charset="utf-8"></script>
 {% endblock %}
 
 {% block content %}
 <h1>{{ object }}</h1>
+
+<script>
+var x = [];
+var y = [];
+
+
+var format = d3.time.format.utc('%Y-%m-%dT%H:%M:%S')
+var dt;
+
+{% for recordvalue in object.recordvalue_set.all %}
+
+	dt = format.parse('{{ recordvalue.datetime|date:"c" }}');
+
+	x.push(dt);
+	y.push({{ recordvalue.value }});
+
+{% endfor %}
+
+
+
+</script>
 <ul>
 {% for recordvalue in object.recordvalue_set.all %}
-	<li>{{ recordvalue.datetime|date:"D d M Y H:m" }} {{ recordvalue.value }}</li>
+	<li>{{ recordvalue.datetime|date:"d-M-Y H:m" }} {{ recordvalue.value }}</li>
 {% endfor %}
 
 </ul>
 
+<div id="graph" class="aGraph" style="position:absolute;top:0px;left:0; float:left;"></div>
+
 <a href="{% url 'location-detail' slug=object.location.slug %}">Terug </a>
+
 
 {% endblock %}
