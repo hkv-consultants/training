@@ -1,6 +1,9 @@
 # Django settings for training project.
 import os
 
+# Add a reference to path of Django project
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
