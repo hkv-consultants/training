@@ -19,7 +19,7 @@ Summary day 1
 
        manage.py startapp <app_name>
 
-#. Create models in `<repo_root>/<project_name>/<app_name>/models.py`
+#. Create `models <https://docs.djangoproject.com/en/dev/ref/models/instances/>`_ ('tables') in `<repo_root>/<project_name>/<app_name>/models.py`
 
 #. Create tables and database::
 
@@ -31,7 +31,7 @@ Summary day 1
 
 #. Explore `logging of generated SQL <http://dabapps.com/blog/logging-sql-queries-django-13/>`_.
 
-#. Explore basic QuerySet usage and `aggregates <https://docs.djangoproject.com/en/dev/topics/db/aggregation/>`_ in shell.
+#. Explore basic `QuerySet usage <https://docs.djangoproject.com/en/dev/topics/db/queries/>`_ and `aggregates <https://docs.djangoproject.com/en/dev/topics/db/aggregation/>`_ in shell.
 
 #. Configure Django admin filters and model `__unicode__ <https://docs.djangoproject.com/en/dev/ref/models/instances/#unicode>`_ representation.
 
