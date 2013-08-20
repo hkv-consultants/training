@@ -3,8 +3,8 @@
 {% block content %}
 <h1>{{ object }}</h1>
 <ul>
-{% for location in record_values %}
-	<li>{{ location }}</li>
+{% for record_value in record_values %}
+	<li>{{ record_value }}</li>
 {% endfor %}
 </ul>
 {% endblock %}
