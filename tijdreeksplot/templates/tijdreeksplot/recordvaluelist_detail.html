@@ -3,8 +3,12 @@
 {% block content %}
 <h1>{{ object }}</h1>
 <ul>
-{% for record_value in record_values %}
-	<li><a href="{{ record_value.get_absolute_url }}">{{ record_value }}</a></li>
+{% for recordvalue in object.recordvalue_set.all %}
+	<li>{{ recordvalue.datetime|date:"D d M Y H:m" }} {{ recordvalue.value }}</li>
 {% endfor %}
+
 </ul>
+
+<a href="{% url 'location-detail' slug=object.location.slug %}">Terug </a>
+
 {% endblock %}
