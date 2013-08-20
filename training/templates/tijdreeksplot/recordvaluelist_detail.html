@@ -39,6 +39,8 @@
 
 <div id="graph" class="aGraph" style="position:absolute;top:0px;left:0; float:left;"></div>
 
+<a href="{% url 'location-detail' slug=object.location.slug %}">Terug </a>
+
 <script>
 // Graph dimensions
 var m = [80, 80, 80, 80]; // margins
@@ -63,13 +65,11 @@ var date, value;
     });
 {% endfor %}
 
-// Find extremes
-var xextent = d3.extent(data, function (item) {item.x}),
-    yextent = d3.extent(data, function (item) {item.y});
+var x = d3.time.scale().range([0, w]);
+var y = d3.scale.linear().range([h, 0]);
 
-// Setup scales
-var x = d3.time.scale.utc().range(xextent),
-    y = d3.scale.linear().range(yextent);
+x.domain(d3.extent(data, function(d) { return d.x; }));
+y.domain([0, d3.max(data, function(d) { return d.y; })]);
 
 // Create line with specified scales
 var line = d3.svg.line()
@@ -112,7 +112,7 @@ graph.append("svg:path").attr("d", line(data));
 
 </ul>
 
-<a href="{% url 'location-detail' slug=object.location.slug %}">Terug </a>
+
 
 
 {% endblock %}
