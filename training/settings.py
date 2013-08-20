@@ -1,7 +1,11 @@
 # Django settings for training project.
 import os
 
+<<<<<<< HEAD
 # Add a reference to the training project's app directory (training/trainging)
+=======
+# Add a reference to path of Django project
+>>>>>>> origin/master
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DEBUG = True

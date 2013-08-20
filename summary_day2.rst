@@ -30,6 +30,7 @@ Summary day 2
 
 #. Introduction of `get_absolute_url <https://docs.djangoproject.com/en/dev/ref/models/instances/#get-absolute-url>`_/`permalink <https://docs.djangoproject.com/en/dev/ref/models/instances/#django.db.models.permalink>`_
 
+<<<<<<< HEAD
 #. Suggestion of `SourceTree <http://www.sourcetreeapp.com/>`_ GIT GUI.
 
 #. Exploration of `staticfiles <https://docs.djangoproject.com/en/dev/howto/static-files/>`_ asset management for Django.
