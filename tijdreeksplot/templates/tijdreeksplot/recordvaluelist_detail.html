@@ -55,9 +55,13 @@ var date, value;
     });
 {% endfor %}
 
+// Find extremes
+var xextent = d3.extent(d, function (d, i) {d[i].x}),
+    yextent = d3.extend(d, function (d, i) {d[i].y});
+
 // Setup scales
-var x = d3.scale.linear().range([0, w]),
-    y = d3.scale.linear().range([h, 0]);
+var x = d3.time.scale.utc().range(xextent),
+    y = d3.scale.linear().range(yextent);
 
 // Create line with specified scales
 var line = d3.svg.line()
