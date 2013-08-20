@@ -1,6 +1,32 @@
 HKV Django Training
 ====================
 
+Getting started
+---------------
+#. Make sure `VirtualEnv and PIP <http://docs.python-guide.org/en/latest/starting/install/win/#distribute-pip>`_ are installed.
+#. Create a virtual environment::
+
+       virtualenv env
+
+#. Activate the environment::
+
+       venv\Scripts\activate.bat
+
+#. Install requirements from `requirements.txt`::
+
+       pip install -r requirements.txt
+
+#. Create a database::
+
+       python manage.py syncdb
+
+#. Run the development server::
+
+       python manage.py runserver
+
+#. Open the app in the browser at http://127.0.0.1:8000/
+
+
 Preparatory material
 ---------------------
 * `Crash into Python <http://stephensugden.com/crash_into_python/>`_
