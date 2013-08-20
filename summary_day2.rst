@@ -42,6 +42,12 @@ Summary day 2
 
 #. `Default model ordering <https://docs.djangoproject.com/en/dev/ref/models/options/#ordering>`_  using `Meta` class.
 
+#. Creating and loading `fixtures <https://docs.djangoproject.com/en/dev/howto/initial-data/>`_ (initial data) with management commands::
+
+       manage.py dumpdata <app_name> > <app_name>/fixtures/<fixture_name>.json
+       ...
+       manage.py loaddata <fixture_name>
+
 Later
 -----
 
