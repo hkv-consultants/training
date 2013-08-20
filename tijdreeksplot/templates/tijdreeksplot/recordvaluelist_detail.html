@@ -40,15 +40,19 @@
 <div id="graph" class="aGraph" style="position:absolute;top:0px;left:0; float:left;"></div>
 
 <script>
+// Graph dimensions
 var m = [80, 80, 80, 80]; // margins
-		var w = 1000 - m[1] - m[3]; // width
-		var h = 400 - m[0] - m[2]; // height
+var w = 1000 - m[1] - m[3]; // width
+var h = 400 - m[0] - m[2]; // height
 
-		var data = [];
+// Image format for parsing
 var format = d3.time.format.utc('%Y-%m-%dT%H:%M:%S')
 
+// Empty variables for data
+var data = [];
 var date, value;
 
+// Data from Django to JS
 {% for recordvalue in object.recordvalue_set.all %}
     date = format.parse('{{ recordvalue.datetime|date:"c" }}');
     value = {{ recordvalue.value }};
