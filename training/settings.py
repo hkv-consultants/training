@@ -73,6 +73,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    # Project-specific assets in training/training/static
     os.path.join(BASE_DIR, "static"),
 )
 
@@ -113,6 +114,9 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+
+    # Project-specific templates in training/training/templates
+    os.path.join(BASE_DIR, "templates"),
 )
 
 INSTALLED_APPS = (
