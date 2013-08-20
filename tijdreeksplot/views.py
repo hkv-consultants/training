@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView, DetailView
 from django.template import RequestContext
 
 from .models import Location, RecordValueList
@@ -15,6 +15,7 @@ def location_list(request):
                               context,
                               context_instance=RequestContext(request))
 
+
 class LocationDetail(DetailView):
     model = Location
 
@@ -24,3 +25,14 @@ class LocationDetail(DetailView):
         location = context['object']
         context['record_values'] = RecordValueList.objects.filter(location = location)
         return context
+
+
+class RecordValueListDetail(DetailView):
+    model = RecordValueList
+
+    def get_queryset(self):
+        qs = super(RecordValueListDetail, self).get_queryset()
+        self.location = get_object_or_404(Location, slug=self.kwargs['location_slug'])
+
+        return qs.filter(location=self.location)
+

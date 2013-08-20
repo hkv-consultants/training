@@ -34,6 +34,13 @@ class RecordValueList(models.Model):
     def __unicode__(self):
         return self.name
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('recordvaluelist-detail', (), {
+            'location_slug': self.location.slug,
+            'slug': self.slug
+        })
+
 
 class RecordValue(models.Model):
     """

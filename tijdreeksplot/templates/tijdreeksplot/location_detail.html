@@ -4,7 +4,10 @@
 <h1>{{ object }}</h1>
 <ul>
 {% for record_value in record_values %}
-	<li>{{ record_value }}</li>
+	<li><a href="{{ record_value.get_absolute_url }}">{{ record_value }}</a></li>
 {% endfor %}
 </ul>
+
+<a href="{% url 'location-list' %}">Terug </a>
+
 {% endblock %}
