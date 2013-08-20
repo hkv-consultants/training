@@ -32,8 +32,9 @@
 
 <div id="graph" class="aGraph" style="position:absolute;top:0px;left:0; float:left;"></div>
 
+<div>
 <a href="{% url 'location-detail' slug=object.location.slug %}">Terug </a>
-
+</div>
 <script>
 // Graph dimensions
 var m = [80, 80, 80, 80]; // margins
@@ -98,14 +99,5 @@ graph.append("svg:g")
 graph.append("svg:path").attr("d", line(data));
 
 </script>
-<ul>
-{% for recordvalue in object.recordvalue_set.all %}
-	<li>{{ recordvalue.datetime|date:"d-M-Y H:m" }} {{ recordvalue.value }}</li>
-{% endfor %}
-
-</ul>
-
-
-
 
 {% endblock %}
