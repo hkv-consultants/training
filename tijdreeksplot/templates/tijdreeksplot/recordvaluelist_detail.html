@@ -38,23 +38,29 @@
 <h1>{{ object }}</h1>
 
 <script>
-var x = [];
-var y = [];
-
-
+var data = [];
 var format = d3.time.format.utc('%Y-%m-%dT%H:%M:%S')
-var dt;
+
+var date, value;
 
 {% for recordvalue in object.recordvalue_set.all %}
+    date = format.parse('{{ recordvalue.datetime|date:"c" }}');
+    value = {{ recordvalue.value }};
 
-	dt = format.parse('{{ recordvalue.datetime|date:"c" }}');
-
-	x.push(dt);
-	y.push({{ recordvalue.value }});
-
+    data.push(new Array(date, value));
 {% endfor %}
 
+// Setup scales
+var x = d3.scale.linear().range([0, w]),
+    y = d3.scale.linear().range([h, 0]);
 
+// Create line with specified scales
+var line = d3.svg.line()
+    .x(function(d) { return x(d.x); })
+    .y(function(d) { return y(d.y); });
+
+// Render line
+line(data);
 
 </script>
 <ul>
