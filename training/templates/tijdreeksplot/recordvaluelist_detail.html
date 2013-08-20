@@ -56,7 +56,7 @@ var x = d3.time.scale().range([0, w]);
 var y = d3.scale.linear().range([h, 0]);
 
 x.domain(d3.extent(data, function(d) { return d.x; }));
-y.domain([0, d3.max(data, function(d) { return d.y; })]);
+y.domain(d3.extent(data, function(d) { return d.y; }));
 
 // Create line with specified scales
 var line = d3.svg.line()
