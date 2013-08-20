@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
-from django.views.generic import ListView
+from django.views.generic import ListView,DetailView
 from django.template import RequestContext
 
 from .models import Location, RecordValueList
@@ -15,10 +15,12 @@ def location_list(request):
                               context,
                               context_instance=RequestContext(request))
 
-class RecordValueListList(ListView):
-    model = RecordValueList
+class LocationDetail(DetailView):
+    model = Location
 
-    def get_queryset(self):
-        qs = super(RecordValueListList, self).get_queryset()
-        self.location = get_object_or_404(Location, name=self.args[0])
-        return qs.filter(location=self.location)
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(LocationDetail, self).get_context_data(**kwargs)
+        location = context['object']
+        context['record_values'] = RecordValueList.objects.filter(location = location)
+        return context
