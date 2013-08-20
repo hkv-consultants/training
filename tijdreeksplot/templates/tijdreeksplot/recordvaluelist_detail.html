@@ -40,7 +40,11 @@
 <div id="graph" class="aGraph" style="position:absolute;top:0px;left:0; float:left;"></div>
 
 <script>
-var data = [];
+var m = [80, 80, 80, 80]; // margins
+		var w = 1000 - m[1] - m[3]; // width
+		var h = 400 - m[0] - m[2]; // height
+
+		var data = [];
 var format = d3.time.format.utc('%Y-%m-%dT%H:%M:%S')
 
 var date, value;
@@ -56,8 +60,8 @@ var date, value;
 {% endfor %}
 
 // Find extremes
-var xextent = d3.extent(d, function (d, i) {d[i].x}),
-    yextent = d3.extend(d, function (d, i) {d[i].y});
+var xextent = d3.extent(data, function (item) {item.x}),
+    yextent = d3.extent(data, function (item) {item.y});
 
 // Setup scales
 var x = d3.time.scale.utc().range(xextent),
