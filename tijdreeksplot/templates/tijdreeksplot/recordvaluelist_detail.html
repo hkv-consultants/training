@@ -37,6 +37,8 @@
 {% block content %}
 <h1>{{ object }}</h1>
 
+<div id="graph" class="aGraph" style="position:absolute;top:0px;left:0; float:left;"></div>
+
 <script>
 var data = [];
 var format = d3.time.format.utc('%Y-%m-%dT%H:%M:%S')
@@ -47,7 +49,10 @@ var date, value;
     date = format.parse('{{ recordvalue.datetime|date:"c" }}');
     value = {{ recordvalue.value }};
 
-    data.push(new Array(date, value));
+    data.push({
+        x: date,
+        y: value
+    });
 {% endfor %}
 
 // Setup scales
@@ -59,8 +64,33 @@ var line = d3.svg.line()
     .x(function(d) { return x(d.x); })
     .y(function(d) { return y(d.y); });
 
-// Render line
-line(data);
+// Add an SVG element with the desired dimensions and margin.
+var graph = d3.select("#graph").append("svg:svg")
+      .attr("width", w + m[1] + m[3])
+      .attr("height", h + m[0] + m[2])
+    .append("svg:g")
+      .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
+
+// create yAxis
+var xAxis = d3.svg.axis().scale(x).tickSize(-h).tickSubdivide(true);
+// Add the x-axis.
+graph.append("svg:g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + h + ")")
+      .call(xAxis);
+
+
+// create left yAxis
+var yAxisLeft = d3.svg.axis().scale(y).ticks(4).orient("left");
+// Add the y-axis to the left
+graph.append("svg:g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(-25,0)")
+      .call(yAxisLeft);
+
+// Add the line by appending an svg:path element with the data line we created above
+// do this AFTER the axes above so that the line is above the tick-lines
+graph.append("svg:path").attr("d", line(data));
 
 </script>
 <ul>
@@ -69,8 +99,6 @@ line(data);
 {% endfor %}
 
 </ul>
-
-<div id="graph" class="aGraph" style="position:absolute;top:0px;left:0; float:left;"></div>
 
 <a href="{% url 'location-detail' slug=object.location.slug %}">Terug </a>
 
